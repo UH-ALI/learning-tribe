@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0f1e4b;
+  --navy-dark: #0a1435;
+  --gold: #f4b41a;
+}
+
+@layer base {
+  html {
+    /* Zero-JS smooth scrolling for the "Book a Free Trial" anchor CTA */
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-white font-sans text-slate-700 antialiased;
+  }
+
+  ::selection {
+    @apply bg-gold text-navy;
+  }
+}
+
+@layer components {
+  /* Shared CTA primitives — anchors styled as buttons (zero JS) */
+  /* Tap/hover physics come from framer-motion springs where these are
+     used in animated sections — no CSS scale here, to avoid compounding. */
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 py-3 font-display text-base font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold;
+  }
+
+  .btn-gold {
+    @apply btn bg-gold text-navy-dark shadow-lg shadow-gold/25 hover:bg-gold-light;
+  }
+
+  .btn-outline-light {
+    @apply btn border-2 border-white/70 text-white hover:border-gold hover:text-gold;
+  }
+}
+
+@layer utilities {
+  /* Horizontal snap-scroll rail for mobile card carousels */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
