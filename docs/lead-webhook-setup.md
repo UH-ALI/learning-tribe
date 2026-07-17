@@ -72,3 +72,20 @@ reply link. To send alerts somewhere else (or to a second person), edit the
 
 > Free Gmail accounts can send ~100 emails/day from Apps Script — far more
 > than you'll need for lead alerts.
+
+## Batch column (added July 2026)
+The form now asks students to pick a **Morning** or **Evening** batch, and the
+script saves it as a new **Batch** column (between Grade/Level and Subjects) and
+includes it in the email alert.
+
+To activate it, **redeploy** the script using the same 4 steps above (paste the
+new `google-apps-script.gs`, Save, New version, Deploy).
+
+**One-time sheet cleanup** — because a new column was added in the middle, do
+ONE of these so the columns line up:
+- **Easiest (recommended):** delete every row in the sheet *including the header
+  row*. The next lead will rewrite a fresh header with the Batch column in the
+  right place. (You'll only lose test rows.)
+- **Keep existing rows:** right-click the "Subjects" column → *Insert 1 column
+  left* → type `Batch` in its header cell. Old rows stay blank in that column;
+  new leads fill it correctly.

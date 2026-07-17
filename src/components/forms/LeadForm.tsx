@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { GRADES, SUBJECTS, leadSchema, type LeadInput } from "@/lib/leadSchema";
+import {
+  BATCHES,
+  GRADES,
+  SUBJECTS,
+  leadSchema,
+  type LeadInput,
+} from "@/lib/leadSchema";
 import { whatsappLink } from "@/content/site";
 
 type Status = "idle" | "success" | "error";
@@ -17,7 +23,13 @@ export function LeadForm() {
     formState: { errors, isSubmitting },
   } = useForm<LeadInput>({
     resolver: zodResolver(leadSchema),
-    defaultValues: { name: "", whatsapp: "", grade: "", subjects: [] },
+    defaultValues: {
+      name: "",
+      whatsapp: "",
+      grade: "",
+      batch: "",
+      subjects: [],
+    },
   });
 
   const onSubmit = handleSubmit(async (data) => {
@@ -154,6 +166,36 @@ export function LeadForm() {
           </p>
         )}
       </div>
+
+      <fieldset className="mt-5">
+        <legend className="mb-2 text-sm font-bold text-navy">
+          Which batch suits you?
+        </legend>
+        <div className="grid grid-cols-2 gap-3">
+          {BATCHES.map(({ value, hint }) => (
+            <label
+              key={value}
+              className="flex cursor-pointer flex-col items-center rounded-xl border border-slate-300 px-4 py-3 text-center transition-colors has-[:checked]:border-gold has-[:checked]:bg-gold/10 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-gold/40"
+            >
+              <input
+                type="radio"
+                value={value}
+                className="sr-only"
+                {...register("batch")}
+              />
+              <span className="font-display text-sm font-bold text-navy">
+                {value}
+              </span>
+              <span className="text-xs text-slate-500">{hint}</span>
+            </label>
+          ))}
+        </div>
+        {errors.batch && (
+          <p role="alert" className="mt-1.5 text-sm text-red-600">
+            {errors.batch.message}
+          </p>
+        )}
+      </fieldset>
 
       <fieldset className="mt-5">
         <legend className="mb-2 text-sm font-bold text-navy">

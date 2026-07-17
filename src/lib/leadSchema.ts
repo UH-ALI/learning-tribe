@@ -1,5 +1,13 @@
 import { z } from "zod";
 
+/** Batch options — Morning is weekday, Evening is weekend. */
+export const BATCHES = [
+  { value: "Morning", hint: "Weekdays" },
+  { value: "Evening", hint: "Weekend" },
+] as const;
+
+const BATCH_VALUES = BATCHES.map((b) => b.value);
+
 /** Options for the grade dropdown — mirrors the batches we actually run. */
 export const GRADES = [
   "Grade 9",
@@ -50,6 +58,9 @@ export const leadSchema = z.object({
       (v) => (GRADES as readonly string[]).includes(v),
       "Please select your grade / level",
     ),
+  batch: z
+    .string()
+    .refine((v) => BATCH_VALUES.includes(v), "Please choose a batch"),
   subjects: z
     .array(z.string())
     .min(1, "Pick at least one subject")

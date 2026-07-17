@@ -14,7 +14,7 @@ function doPost(e) {
 
     // Write a header row the first time.
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(['Received At', 'Name', 'WhatsApp', 'Grade/Level', 'Subjects']);
+      sheet.appendRow(['Received At', 'Name', 'WhatsApp', 'Grade/Level', 'Batch', 'Subjects']);
     }
 
     sheet.appendRow([
@@ -22,6 +22,7 @@ function doPost(e) {
       data.name || '',
       "'" + (data.whatsapp || ''), // leading ' keeps the 0 in 03xx numbers
       data.grade || '',
+      data.batch || '',
       Array.isArray(data.subjects) ? data.subjects.join(', ') : (data.subjects || '')
     ]);
 
@@ -41,6 +42,7 @@ function doPost(e) {
           'Name:      ' + (data.name || '') + '\n' +
           'WhatsApp:  ' + (data.whatsapp || '') + '\n' +
           'Grade:     ' + (data.grade || '') + '\n' +
+          'Batch:     ' + (data.batch || '') + '\n' +
           'Subjects:  ' + subjects + '\n' +
           'Received:  ' + (data.submittedAt || new Date().toISOString()) + '\n\n' +
           'Reply on WhatsApp: https://wa.me/92' + String(data.whatsapp || '').replace(/^(\+?92|0)/, '') + '\n' +
