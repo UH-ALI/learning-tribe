@@ -1,41 +1,49 @@
 import type { FacultyMember } from "./types";
 
 /**
- * Faculty roster — grouped sciences → maths/CS → commerce → languages → humanities.
- * Photos live in /public/images/faculty (cropped square from the top in the card).
- * Teachers without a photo yet fall back to a branded placeholder.
+ * Faculty roster. The array order IS the display order (3-col grid):
+ *   Row 1: Tayyab · Waleed Fulara · Miss Ayesha
+ *   Row 2: Fahad · Ibrahim · Zaryab
+ *   Row 3: Abdul Mateen · Dr Noor · Danyal
+ *   Row 4: Ahmed Sewani · Kamran · M Bilal
+ *   Row 5: Mustafa Moten · Ali Moten
+ * Photos live in /public/images/faculty (keep sources ≤1200px long edge).
  */
 export const faculty: FacultyMember[] = [
+  // Row 1 — humanities & languages
   {
-    slug: "noor-azeem",
-    name: "Dr Noor Azeem",
-    subjects: ["Biology", "Chemistry"],
-    levels: ["O Level", "AS Level", "A2 Level"],
-    credential: "Doctor by training — Biology & Chemistry specialist",
-    photo: "/images/faculty/noor-azeem.jpeg",
+    slug: "tayyab-ansari",
+    name: "Sir Tayyab Ansari",
+    subjects: ["Islamiyat"],
+    levels: ["O Level"],
+    credential: "Islamiyat specialist",
+    photo: "/images/faculty/tayyab-ansari.jpeg",
   },
   {
-    slug: "abdul-mateen",
-    name: "Sir Abdul Mateen",
-    subjects: ["Chemistry"],
-    levels: ["O Level", "AS Level", "A2 Level"],
-    credential: "Chemistry from O Level through A2",
-    photo: "/images/faculty/abdul-mateen.jpeg",
+    slug: "waleed-fulara",
+    name: "Sir Waleed Fulara",
+    subjects: ["Pakistan Studies"],
+    levels: ["O Level"],
+    credential: "Pakistan Studies specialist",
+    photo: "/images/faculty/waleed-fulara.jpeg",
   },
   {
-    slug: "m-bilal",
-    name: "Sir M Bilal",
-    subjects: ["Chemistry"],
-    levels: ["AS Level", "A2 Level"],
-    credential: "A Level Chemistry specialist",
-    photo: "/images/faculty/m-bilal.jpeg",
+    slug: "ayesha",
+    name: "Miss Ayesha",
+    subjects: ["Urdu"],
+    levels: ["O Level"],
+    credential: "O Level Urdu specialist",
+    avatar: "female",
   },
+
+  // Row 2 — physics, maths, computer science
   {
     slug: "fahad-ali",
     name: "Sir Fahad Ali",
     subjects: ["Physics"],
     levels: ["O Level", "AS Level", "A2 Level"],
     credential: "Physics across all Cambridge levels",
+    photo: "/images/faculty/fahad-ali.jpeg",
   },
   {
     slug: "ibrahim-ali",
@@ -53,21 +61,34 @@ export const faculty: FacultyMember[] = [
     credential: "Computer Science from O Level through A2",
     photo: "/images/faculty/zaryab-hussain.jpeg",
   },
+
+  // Row 3 — chemistry & biology
   {
-    slug: "mustafa-moten",
-    name: "Sir Mustafa Moten",
-    subjects: ["Business", "Economics"],
+    slug: "abdul-mateen",
+    name: "Sir Abdul Mateen",
+    subjects: ["Chemistry"],
     levels: ["O Level", "AS Level", "A2 Level"],
-    credential: "Business & Economics across all levels",
+    credential: "Chemistry from O Level through A2",
+    photo: "/images/faculty/abdul-mateen.jpeg",
   },
   {
-    slug: "ali-moten",
-    name: "Sir Ali Moten",
-    subjects: ["Accounts"],
+    slug: "noor-azeem",
+    name: "Dr Noor Azeem",
+    subjects: ["Biology", "Chemistry"],
     levels: ["O Level", "AS Level", "A2 Level"],
-    credential: "Accounting across all Cambridge levels",
-    photo: "/images/faculty/ali-moten.jpeg",
+    credential: "Doctor by training — Biology & Chemistry specialist",
+    photo: "/images/faculty/noor-azeem.jpeg",
   },
+  {
+    slug: "danyal",
+    name: "Sir Danyal",
+    subjects: ["Biology"],
+    levels: ["O Level"],
+    credential: "O Level Biology specialist",
+    photo: "/images/faculty/danyal.jpeg",
+  },
+
+  // Row 4 — English & A Level chemistry
   {
     slug: "ahmed-sewani",
     name: "Sir Ahmed Sewani",
@@ -84,27 +105,28 @@ export const faculty: FacultyMember[] = [
     credential: "A Level English specialist",
   },
   {
-    slug: "ayesha",
-    name: "Miss Ayesha",
-    subjects: ["Urdu"],
-    levels: ["O Level"],
-    credential: "O Level Urdu specialist",
-    avatar: "female",
+    slug: "m-bilal",
+    name: "Sir M Bilal",
+    subjects: ["Chemistry"],
+    levels: ["AS Level", "A2 Level"],
+    credential: "A Level Chemistry specialist",
+    photo: "/images/faculty/m-bilal.jpeg",
+  },
+
+  // Row 5 — commerce
+  {
+    slug: "mustafa-moten",
+    name: "Sir Mustafa Moten",
+    subjects: ["Business", "Economics"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Business & Economics across all levels",
   },
   {
-    slug: "waleed-fulara",
-    name: "Sir Waleed Fulara",
-    subjects: ["Pakistan Studies"],
-    levels: ["O Level"],
-    credential: "Pakistan Studies specialist",
-    photo: "/images/faculty/waleed-fulara.jpeg",
-  },
-  {
-    slug: "tayyab-ansari",
-    name: "Sir Tayyab Ansari",
-    subjects: ["Islamiyat"],
-    levels: ["O Level"],
-    credential: "Islamiyat specialist",
-    photo: "/images/faculty/tayyab-ansari.jpeg",
+    slug: "ali-moten",
+    name: "Sir Ali Moten",
+    subjects: ["Accounts"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Accounting across all Cambridge levels",
+    photo: "/images/faculty/ali-moten.jpeg",
   },
 ];

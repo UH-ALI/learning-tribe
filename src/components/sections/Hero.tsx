@@ -10,7 +10,7 @@ import {
 } from "@/components/motion/vocabulary";
 
 const STATS = [
-  ["11", "Specialist teachers"],
+  ["14", "Specialist teachers"],
   ["2", "Batches: AM & PM"],
   ["12+", "Cambridge subjects"],
 ] as const;

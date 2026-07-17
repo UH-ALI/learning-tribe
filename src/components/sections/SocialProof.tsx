@@ -31,7 +31,7 @@ export function SocialProof() {
         {/* Testimonials — snap rail on mobile, 3-up grid on desktop */}
         <ul
           aria-label="Student testimonials"
-          className="scrollbar-none -mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0"
+          className="scrollbar-none -mx-5 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0"
         >
           {testimonials.map(({ quote, name, detail }) => (
             <li
