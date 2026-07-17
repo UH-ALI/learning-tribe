@@ -120,6 +120,7 @@ export const faculty: FacultyMember[] = [
     subjects: ["Business", "Economics"],
     levels: ["O Level", "AS Level", "A2 Level"],
     credential: "Business & Economics across all levels",
+    photo: "/images/faculty/mustafa-moten.jpeg",
   },
   {
     slug: "ali-moten",
