@@ -60,7 +60,10 @@ export const leadSchema = z.object({
     ),
   batch: z
     .string()
-    .refine((v) => BATCH_VALUES.includes(v), "Please choose a batch"),
+    .refine(
+      (v) => (BATCH_VALUES as readonly string[]).includes(v),
+      "Please choose a batch",
+    ),
   subjects: z
     .array(z.string())
     .min(1, "Pick at least one subject")
