@@ -13,8 +13,14 @@ export interface FacultyMember {
   levels: Level[];
   /** One-line credential, e.g. "MBBS — 8+ years teaching A Level Biology". */
   credential?: string;
-  /** Path under /public, e.g. "/images/faculty/noor-azeem.jpg". Optional — card falls back to initials. */
+  /** Path under /public, e.g. "/images/faculty/noor-azeem.jpg". Optional — card falls back to a placeholder. */
   photo?: string;
+  /**
+   * Placeholder shown when there is no photo:
+   * - "female" renders a girl profile logo,
+   * - otherwise (default) the card shows the teacher's initials.
+   */
+  avatar?: "female";
 }
 
 export type BatchId = "morning" | "evening";

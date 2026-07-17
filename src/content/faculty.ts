@@ -1,17 +1,34 @@
 import type { FacultyMember } from "./types";
 
 /**
- * Faculty roster — sourced from the "Meet Our Teacher" Instagram series.
- * TODO(content): add cropped square headshots to /public/images/faculty/
- * and fill in each teacher's one-line credential (qualification + years).
+ * Faculty roster — grouped sciences → maths/CS → commerce → languages → humanities.
+ * Photos live in /public/images/faculty (cropped square from the top in the card).
+ * Teachers without a photo yet fall back to a branded placeholder.
  */
 export const faculty: FacultyMember[] = [
   {
     slug: "noor-azeem",
     name: "Dr Noor Azeem",
     subjects: ["Biology", "Chemistry"],
-    levels: ["A2 Level", "AS Level"],
-    credential: "Doctor by training — A Level sciences specialist",
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Doctor by training — Biology & Chemistry specialist",
+    photo: "/images/faculty/noor-azeem.jpeg",
+  },
+  {
+    slug: "abdul-mateen",
+    name: "Sir Abdul Mateen",
+    subjects: ["Chemistry"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Chemistry from O Level through A2",
+    photo: "/images/faculty/abdul-mateen.jpeg",
+  },
+  {
+    slug: "m-bilal",
+    name: "Sir M Bilal",
+    subjects: ["Chemistry"],
+    levels: ["AS Level", "A2 Level"],
+    credential: "A Level Chemistry specialist",
+    photo: "/images/faculty/m-bilal.jpeg",
   },
   {
     slug: "fahad-ali",
@@ -21,11 +38,20 @@ export const faculty: FacultyMember[] = [
     credential: "Physics across all Cambridge levels",
   },
   {
+    slug: "ibrahim-ali",
+    name: "Sir Ibrahim Ali",
+    subjects: ["Maths"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Mathematics from O Level through A2",
+    photo: "/images/faculty/ibrahim-ali.jpeg",
+  },
+  {
     slug: "zaryab-hussain",
     name: "Sir Zaryab Hussain",
     subjects: ["Computer Science"],
     levels: ["O Level", "AS Level", "A2 Level"],
     credential: "Computer Science from O Level through A2",
+    photo: "/images/faculty/zaryab-hussain.jpeg",
   },
   {
     slug: "mustafa-moten",
@@ -35,25 +61,12 @@ export const faculty: FacultyMember[] = [
     credential: "Business & Economics across all levels",
   },
   {
-    slug: "ahmed-shah",
-    name: "Sir Ahmed Shah",
-    subjects: ["Chemistry"],
-    levels: ["O Level", "AS Level", "A2 Level"],
-    credential: "Chemistry across all Cambridge levels",
-  },
-  {
-    slug: "ibrahim-ali",
-    name: "Sir Ibrahim Ali",
-    subjects: ["Maths"],
-    levels: ["O Level", "AS Level", "A2 Level"],
-    credential: "Mathematics from O Level through A2",
-  },
-  {
     slug: "ali-moten",
     name: "Sir Ali Moten",
     subjects: ["Accounts"],
     levels: ["O Level", "AS Level", "A2 Level"],
     credential: "Accounting across all Cambridge levels",
+    photo: "/images/faculty/ali-moten.jpeg",
   },
   {
     slug: "ahmed-sewani",
@@ -61,13 +74,22 @@ export const faculty: FacultyMember[] = [
     subjects: ["English"],
     levels: ["O Level"],
     credential: "O Level English language specialist",
+    photo: "/images/faculty/ahmed-sewani.jpeg",
   },
   {
-    slug: "farah",
-    name: "Miss Farah",
+    slug: "kamran-ali",
+    name: "Sir Kamran Ali",
+    subjects: ["English"],
+    levels: ["AS Level", "A2 Level"],
+    credential: "A Level English specialist",
+  },
+  {
+    slug: "ayesha",
+    name: "Miss Ayesha",
     subjects: ["Urdu"],
     levels: ["O Level"],
     credential: "O Level Urdu specialist",
+    avatar: "female",
   },
   {
     slug: "waleed-fulara",
@@ -75,6 +97,7 @@ export const faculty: FacultyMember[] = [
     subjects: ["Pakistan Studies"],
     levels: ["O Level"],
     credential: "Pakistan Studies specialist",
+    photo: "/images/faculty/waleed-fulara.jpeg",
   },
   {
     slug: "tayyab-ansari",
@@ -82,5 +105,6 @@ export const faculty: FacultyMember[] = [
     subjects: ["Islamiyat"],
     levels: ["O Level"],
     credential: "Islamiyat specialist",
+    photo: "/images/faculty/tayyab-ansari.jpeg",
   },
 ];
