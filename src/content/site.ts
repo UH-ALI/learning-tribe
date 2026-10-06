@@ -41,3 +41,8 @@ export const whatsappLink = `https://wa.me/${site.whatsappNumber}?text=${encodeU
 export const whatsappDemoLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
   "Hi! I'd like to confirm the current class timings and book a free demo class at The Learning Tribe.",
 )}`;
+
+/** Same number, crash-course prefill. */
+export const whatsappCrashLink = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
+  "Hi! I'd like to know more about the crash courses at The Learning Tribe.",
+)}`;

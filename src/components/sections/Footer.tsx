@@ -6,6 +6,7 @@ const LINKS = [
   { href: "#why", label: "Why the Tribe" },
   { href: "#faculty", label: "Faculty" },
   { href: "#timetable", label: "Timetable" },
+  { href: "#crash-courses", label: "Crash courses" },
   { href: "#results", label: "Results" },
   { href: "#faq", label: "FAQ" },
   { href: "#enroll", label: "Free trial class" },

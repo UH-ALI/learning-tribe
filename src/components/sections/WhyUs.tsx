@@ -136,7 +136,7 @@ export function WhyUs() {
               their field.
             </p>
             <div className="mt-6 flex -space-x-2.5">
-              {withPhotos.slice(5, 11).map((f) => (
+              {withPhotos.slice(-6).map((f) => (
                 <span
                   key={f.slug}
                   className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-gold"

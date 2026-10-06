@@ -34,24 +34,37 @@ export const SUBJECTS = [
   "Pakistan Studies",
 ] as const;
 
+/** Fields shared by every enquiry form (trial class, crash course). */
+export const nameField = z
+  .string()
+  .trim()
+  .min(2, "Please enter your name")
+  .max(80, "That name looks too long");
+
+export const whatsappField = z
+  .string()
+  .trim()
+  .transform((v) => v.replace(/[\s-]/g, ""))
+  .refine(
+    (v) => /^(?:\+?92|0)3\d{9}$/.test(v),
+    "Enter a valid Pakistani mobile number, e.g. 0317 8915543",
+  );
+
+export const subjectsField = z
+  .array(z.string())
+  .min(1, "Pick at least one subject")
+  .refine(
+    (arr) => arr.every((s) => (SUBJECTS as readonly string[]).includes(s)),
+    "Unknown subject selected",
+  );
+
 /**
  * Validated on the client (react-hook-form resolver) AND re-validated
  * inside /api/lead — never trust the client.
  */
 export const leadSchema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(2, "Please enter your name")
-    .max(80, "That name looks too long"),
-  whatsapp: z
-    .string()
-    .trim()
-    .transform((v) => v.replace(/[\s-]/g, ""))
-    .refine(
-      (v) => /^(?:\+?92|0)3\d{9}$/.test(v),
-      "Enter a valid Pakistani mobile number, e.g. 0317 8915543",
-    ),
+  name: nameField,
+  whatsapp: whatsappField,
   grade: z
     .string()
     .refine(
@@ -64,13 +77,7 @@ export const leadSchema = z.object({
       (v) => (BATCH_VALUES as readonly string[]).includes(v),
       "Please choose a batch",
     ),
-  subjects: z
-    .array(z.string())
-    .min(1, "Pick at least one subject")
-    .refine(
-      (arr) => arr.every((s) => (SUBJECTS as readonly string[]).includes(s)),
-      "Unknown subject selected",
-    ),
+  subjects: subjectsField,
 });
 
 export type LeadInput = z.input<typeof leadSchema>;

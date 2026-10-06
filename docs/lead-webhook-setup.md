@@ -89,3 +89,47 @@ ONE of these so the columns line up:
 - **Keep existing rows:** right-click the "Subjects" column → *Insert 1 column
   left* → type `Batch` in its header cell. Old rows stay blank in that column;
   new leads fill it correctly.
+
+## Crash-course sign-ups (added October 2026)
+The site now has a separate **Crash Courses** form. Its submissions go to
+`/api/crash-course` and are saved in their **own tab**, so they never mix with
+free-trial leads:
+
+| Tab | Filled by | Columns |
+|---|---|---|
+| **Leads** (or your first tab) | "Book a free trial" form | Received At · Name · WhatsApp · Grade/Level · Batch · Subjects |
+| **Crash Course Leads** | Crash Courses form | Received At · Name · WhatsApp · Level · Exam Session · Subjects |
+
+The **Crash Course Leads** tab is created automatically the first time someone
+registers — you don't need to make it. Email alerts arrive with the subject
+"New crash-course sign-up: …".
+
+### To switch it on — redeploy the script (required)
+Until you do this, crash-course sign-ups go to the old script, which drops
+them into the trial **Leads** tab with the Level and Exam Session missing.
+
+1. Open the sheet → **Extensions → Apps Script**.
+2. Replace the old code with the new `google-apps-script.gs` contents, **Save**.
+3. **Deploy → Manage deployments → ✏️ (edit) → Version: New version → Deploy.**
+   The URL stays the same, so nothing needs to change on Vercel.
+4. Fill in the Crash Courses form on the site and check that a
+   **Crash Course Leads** tab appears with your test row.
+
+### Want crash courses in a completely separate spreadsheet instead?
+1. Create a second Google Sheet (e.g. **Learning Tribe Crash Courses**) and
+   repeat Steps 2–3 above in *that* sheet with the same script.
+2. Copy its Web app URL and add it on Vercel (and in `.env.local`) as:
+   ```
+   CRASH_COURSE_WEBHOOK_URL=https://script.google.com/macros/s/AKfy...second-url.../exec
+   ```
+3. Redeploy the site. Crash-course sign-ups now go only to the second
+   spreadsheet (into its **Crash Course Leads** tab); trial leads keep going to
+   the first.
+
+When `CRASH_COURSE_WEBHOOK_URL` is empty, the site uses `LEAD_WEBHOOK_URL` for
+both forms and the script keeps them apart by tab.
+
+### Changing the exam sessions on the form
+The "Which exam are you preparing for?" options live in
+`src/lib/crashCourseSchema.ts` (`EXAM_SESSIONS`). Edit that list as sessions
+roll over — the form and the server-side validation both update together.

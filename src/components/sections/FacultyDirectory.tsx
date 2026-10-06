@@ -21,13 +21,14 @@ function teachesIn(group: SubjectGroupId) {
     member.subjects.some((s) => groupOf(s)?.id === group);
 }
 
+// Subject families with no teacher on the roster are left out entirely.
 const FILTERS: { id: Filter; label: string; count: number }[] = [
   { id: "all", label: "All", count: faculty.length },
   ...SUBJECT_GROUPS.map((g) => ({
     id: g.id,
     label: g.label,
     count: faculty.filter(teachesIn(g.id)).length,
-  })),
+  })).filter((f) => f.count > 0),
 ];
 
 /** The closing tile fills whatever is left of the last grid row. */

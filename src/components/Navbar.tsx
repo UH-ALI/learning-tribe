@@ -16,13 +16,14 @@ import {
   staggerGroup,
 } from "@/components/motion/vocabulary";
 
-const NAV_LINKS = [
+const NAV_LINKS: { href: string; label: string; isNew?: boolean }[] = [
   { href: "#why", label: "Why us" },
   { href: "#faculty", label: "Faculty" },
   { href: "#timetable", label: "Timetable" },
+  { href: "#crash-courses", label: "Crash courses", isNew: true },
   { href: "#results", label: "Results" },
   { href: "#faq", label: "FAQ" },
-] as const;
+];
 
 const navItem = {
   hidden: { opacity: 0, y: -12 },
@@ -114,7 +115,7 @@ export function Navbar() {
 
           {/* Anchor links — desktop only */}
           <div className="hidden items-center gap-1 lg:flex">
-            {NAV_LINKS.map(({ href, label }) => {
+            {NAV_LINKS.map(({ href, label, isNew }) => {
               const isActive = active === href.slice(1);
               return (
                 <m.a
@@ -122,13 +123,18 @@ export function Navbar() {
                   variants={navItem}
                   href={href}
                   aria-current={isActive ? "true" : undefined}
-                  className={`relative rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+                  className={`relative inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold transition-colors xl:px-4 ${
                     isActive
                       ? "bg-white/10 text-white"
                       : "text-slate-300 hover:text-white"
                   }`}
                 >
                   {label}
+                  {isNew && (
+                    <span className="rounded-full bg-gold px-1.5 py-0.5 text-[0.6rem] font-extrabold uppercase leading-none tracking-wide text-navy-dark">
+                      New
+                    </span>
+                  )}
                   <span
                     aria-hidden
                     className={`absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-gold transition-opacity ${
@@ -200,7 +206,7 @@ export function Navbar() {
               className="relative flex min-h-full flex-col px-6 pb-10 pt-28"
             >
               <ul className="space-y-1">
-                {NAV_LINKS.map(({ href, label }, i) => (
+                {NAV_LINKS.map(({ href, label, isNew }, i) => (
                   <m.li key={href} variants={navItem}>
                     <a
                       href={href}
@@ -213,6 +219,11 @@ export function Navbar() {
                       <span className="transition-colors group-hover:text-gold">
                         {label}
                       </span>
+                      {isNew && (
+                        <span className="self-center rounded-full bg-gold px-2 py-1 font-sans text-[0.65rem] font-extrabold uppercase leading-none tracking-wide text-navy-dark">
+                          New
+                        </span>
+                      )}
                     </a>
                   </m.li>
                 ))}
