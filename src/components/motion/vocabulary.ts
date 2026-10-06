@@ -31,8 +31,12 @@ export const SPRING_TAP: Transition = {
   damping: 22,
 };
 
-/** Scroll trigger: fire once, 100px before the element hits the viewport edge. */
-export const VIEWPORT = { once: true, margin: "-100px" } as const;
+/**
+ * Scroll trigger: fire once, 100px before the element crosses the bottom
+ * edge. Vertical inset only — a horizontal one would shrink the viewport
+ * sideways and strand narrow elements near the screen edges on phones.
+ */
+export const VIEWPORT = { once: true, margin: "-100px 0px" } as const;
 
 /** Rise-and-fade for individual elements. */
 export const fadeRise: Variants = {
@@ -46,10 +50,26 @@ export const cardRise: Variants = {
   visible: { opacity: 1, y: 0, transition: SPRING_SOFT },
 };
 
+/** Scale-in for floating badges and chips. */
+export const popIn: Variants = {
+  hidden: { opacity: 0, scale: 0.85, y: 12 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: SPRING },
+};
+
 /** Masked line reveal — pair with an `overflow-hidden` parent. */
 export const lineReveal: Variants = {
   hidden: { y: "110%" },
   visible: { y: 0, transition: { ...SPRING, stiffness: 90 } },
+};
+
+/** Hand-drawn stroke — animate an SVG path's length from 0 to 1. */
+export const drawStroke: Variants = {
+  hidden: { pathLength: 0, opacity: 0 },
+  visible: {
+    pathLength: 1,
+    opacity: 1,
+    transition: { duration: 0.9, ease: [0.65, 0, 0.35, 1], delay: 0.2 },
+  },
 };
 
 /** Orchestrator: parents stagger their children into place. */

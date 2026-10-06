@@ -23,6 +23,7 @@ export const resultStats: ResultStat[] = [
   { value: "12+", label: "Cambridge subjects under one roof" },
 ];
 
+/** The first entry is featured large on the gold card. */
 export const testimonials: Testimonial[] = [
   {
     quote:

@@ -1,13 +1,17 @@
 import type { FacultyMember } from "./types";
 
 /**
- * Faculty roster. The array order IS the display order (3-col grid):
+ * Faculty roster. The array order IS the display order (4-col grid on
+ * desktop, swipeable rail on mobile; visitors can also filter by subject
+ * family). The "Row" comments below group teachers by subject family:
  *   Row 1: Tayyab · Waleed Fulara · Miss Ayesha
  *   Row 2: Fahad · Ibrahim · Zaryab
  *   Row 3: Abdul Mateen · Dr Noor · Danyal
  *   Row 4: Ahmed Sewani · Kamran · M Bilal
  *   Row 5: Mustafa Moten · Ali Moten
- * Photos live in /public/images/faculty (keep sources ≤1200px long edge).
+ * Photos live in /public/images/faculty as face-centred 4:5 portraits
+ * (800×1000, face roughly a third of the way down) so every card frames
+ * the same way.
  */
 export const faculty: FacultyMember[] = [
   // Row 1 — humanities & languages
