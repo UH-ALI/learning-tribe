@@ -1,10 +1,10 @@
 import type { TimetableContent } from "./types";
 
 /**
- * Morning schedule transcribed from the Session 2026–27 Morning Program
- * poster; the weekend (Evening Batch) schedule is the October 2026
- * Saturday/Sunday timetable for O, AS & A2. Timings shift between
- * sessions — the section UI always shows the coordinator disclaimer
+ * Morning (weekday) and Evening (weekend) schedules as of October 2026.
+ * Slots whose times overlap are parallel classes for different students
+ * — the timetable shows them side by side. Timings shift between
+ * sessions, so the section UI always shows the coordinator disclaimer
  * alongside this data.
  */
 export const timetable: TimetableContent = {
@@ -17,9 +17,9 @@ export const timetable: TimetableContent = {
         slots: [
           { time: "10:00 – 11:00", subjects: ["English"] },
           { time: "11:15 – 12:15", subjects: ["Islamiat"] },
-          { time: "12:30 – 1:30", subjects: ["Maths"] },
+          { time: "12:30 – 2:00", subjects: ["Maths"] },
           { time: "2:00 – 3:00", subjects: ["Accounts", "Chemistry"] },
-          { time: "3:00 – 4:00", subjects: ["Physics"] },
+          { time: "3:00 – 4:00", subjects: ["Physics", "Economics"] },
         ],
       },
       {
@@ -27,29 +27,26 @@ export const timetable: TimetableContent = {
         slots: [
           { time: "10:00 – 11:00", subjects: ["English"] },
           { time: "11:30 – 1:30", subjects: ["Maths"] },
-          { time: "2:00 – 3:00", subjects: ["Accounts", "Chemistry"] },
+          { time: "2:00 – 3:00", subjects: ["Chemistry"] },
           { time: "3:00 – 4:00", subjects: ["Physics"] },
         ],
       },
       {
         day: "Wednesday",
         slots: [
-          { time: "9:00 – 10:00", subjects: ["Business"] },
-          { time: "10:00 – 11:00", subjects: ["Economics"] },
           { time: "11:15 – 12:40", subjects: ["Islamiat"] },
-          { time: "1:00 – 2:00", subjects: ["Urdu"] },
+          { time: "1:00 – 3:00", subjects: ["Maths"] },
           { time: "2:00 – 3:00", subjects: ["Pakistan Studies"] },
-          { time: "3:00 – 4:00", subjects: ["Computer"] },
+          { time: "3:00 – 4:00", subjects: ["Economics"] },
         ],
       },
       {
         day: "Thursday",
         slots: [
-          { time: "9:00 – 10:00", subjects: ["Business"] },
-          { time: "10:00 – 11:00", subjects: ["Economics"] },
+          { time: "11:00 – 12:30", subjects: ["Maths"] },
           { time: "11:30 – 1:00", subjects: ["Urdu"] },
           { time: "2:00 – 3:00", subjects: ["Pakistan Studies"] },
-          { time: "3:00 – 4:00", subjects: ["Computer"] },
+          { time: "3:00 – 4:00", subjects: ["Accounts"] },
         ],
       },
     ],

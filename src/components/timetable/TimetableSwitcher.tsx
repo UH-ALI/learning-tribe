@@ -8,6 +8,8 @@ import { SUBJECTS } from "@/lib/leadSchema";
 import { canonicalSubject, groupOf, type Subject } from "@/content/subjects";
 import { SPRING_TAP, staggerGroup } from "@/components/motion/vocabulary";
 import { BatchToggle } from "./BatchToggle";
+import { DayAgenda } from "./DayAgenda";
+import { formatRange, layoutLanes, parseRange, type LaidOutSlot } from "./time";
 
 /** Pixel height of one hour on the calendar. */
 const HOUR_PX = 76;
@@ -37,20 +39,6 @@ const GRID_COLS: Record<number, string> = {
   4: "md:grid-cols-[4.5rem_repeat(4,minmax(0,1fr))]",
 };
 
-/**
- * Poster times omit AM/PM ("11:30 – 1:30"); classes run 9 AM – 7 PM,
- * so any hour before 8 is afternoon.
- */
-function toMinutes(clock: string): number {
-  const [h, min] = clock.trim().split(":").map(Number);
-  return ((h < 8 ? h + 12 : h) * 60) + (min || 0);
-}
-
-function parseRange(range: string): [number, number] {
-  const [from, to] = range.split("–");
-  return [toMinutes(from), toMinutes(to)];
-}
-
 function hourLabel(hour: number): string {
   const suffix = hour >= 12 ? "PM" : "AM";
   const h = hour % 12 === 0 ? 12 : hour % 12;
@@ -62,10 +50,12 @@ function slotHas(slot: TimeSlot, subject: Subject | null) {
 }
 
 /**
- * Both schedules render as a real day-planner: blocks are sized by
- * duration, so breaks and double periods read at a glance. "Find your
- * subject" lights up every slot for one subject across the week —
- * zero network, pure client state.
+ * Two views of the same data. Desktop: a week grid where blocks are
+ * sized by duration (overlapping classes side by side), so days compare
+ * at a glance. Phone: one day at a time as a compact list (DayAgenda),
+ * picked from day tabs that stay pinned under the navbar. "Find your
+ * subject" lights up every slot for one subject in both views — zero
+ * network, pure client state.
  */
 export function TimetableSwitcher() {
   const [batch, setBatch] = useState<BatchId>("morning");
@@ -154,10 +144,10 @@ export function TimetableSwitcher() {
         id="timetable-panel"
         role="tabpanel"
         aria-label={meta.label}
-        className="mt-8 overflow-hidden rounded-[2rem] bg-white shadow-lift ring-1 ring-navy/[0.07]"
+        className="mt-8 overflow-clip rounded-[2rem] bg-white shadow-lift ring-1 ring-navy/[0.07]"
       >
-        {/* Mobile: column picker */}
-        <div className="scrollbar-none flex gap-2 overflow-x-auto border-b border-navy/[0.07] p-3 md:hidden">
+        {/* Mobile: day picker — pinned under the navbar while the day scrolls */}
+        <div className="scrollbar-none sticky top-[5.25rem] z-20 flex gap-2 overflow-x-auto border-b border-navy/[0.07] bg-white/95 p-3 backdrop-blur md:hidden">
           {columns.map((c, i) => {
             const matches = c.slots.filter((s) => slotHas(s, highlight)).length;
             return (
@@ -166,11 +156,14 @@ export function TimetableSwitcher() {
                 type="button"
                 onClick={() => setColumn(i)}
                 aria-pressed={column === i}
-                className={`relative flex-1 shrink-0 rounded-2xl px-4 py-2.5 font-display text-sm font-bold transition-colors ${
+                className={`relative flex flex-1 shrink-0 flex-col items-center rounded-2xl px-3 py-2 font-display text-sm font-bold transition-colors ${
                   column === i ? "bg-navy text-white" : "bg-cream text-navy/70"
                 }`}
               >
                 {c.short}
+                <span className={`font-sans text-[0.65rem] font-semibold ${column === i ? "text-white/60" : "text-navy/45"}`}>
+                  {c.slots.reduce((n, s) => n + s.subjects.length, 0)} classes
+                </span>
                 {matches > 0 && (
                   <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gold text-[0.65rem] text-navy-dark">
                     {matches}
@@ -194,7 +187,17 @@ export function TimetableSwitcher() {
           ))}
         </div>
 
-        <div className="px-2 py-5 sm:px-3">
+        {/* Phone: one day as a list */}
+        <div className="md:hidden">
+          <DayAgenda
+            title={columns[column].title}
+            slots={columns[column].slots}
+            highlight={highlight}
+          />
+        </div>
+
+        {/* Desktop: hour grid comparing every day */}
+        <div className="hidden px-2 py-5 sm:px-3 md:block">
           <m.div
             key={batch}
             initial="hidden"
@@ -213,7 +216,7 @@ export function TimetableSwitcher() {
               />
             ))}
 
-            <div className={`relative grid h-full grid-cols-[3.5rem_minmax(0,1fr)] ${GRID_COLS[columns.length]}`}>
+            <div className={`relative grid h-full ${GRID_COLS[columns.length]}`}>
               {/* Time gutter */}
               <div className="relative">
                 {hours.map((h) => (
@@ -227,16 +230,11 @@ export function TimetableSwitcher() {
                 ))}
               </div>
 
-              {columns.map((c, i) => (
-                <div
-                  key={c.title}
-                  className={`relative md:border-l md:border-navy/[0.06] ${
-                    i === column ? "" : "hidden md:block"
-                  }`}
-                >
-                  {c.slots.map((slot) => (
+              {columns.map((c) => (
+                <div key={c.title} className="relative border-l border-navy/[0.06]">
+                  {layoutLanes(c.slots).map((slot) => (
                     <SlotBlock
-                      key={slot.time}
+                      key={`${slot.time}-${slot.subjects.join()}`}
                       slot={slot}
                       startHour={startHour}
                       highlight={highlight}
@@ -269,11 +267,11 @@ function SlotBlock({
   startHour,
   highlight,
 }: {
-  slot: TimeSlot;
+  slot: LaidOutSlot;
   startHour: number;
   highlight: Subject | null;
 }) {
-  const [start, end] = parseRange(slot.time);
+  const { start, end, lane, lanes } = slot;
   const top = ((start - startHour * 60) / 60) * HOUR_PX;
   const blockHeight = ((end - start) / 60) * HOUR_PX - 5;
 
@@ -285,20 +283,26 @@ function SlotBlock({
   return (
     <m.div
       variants={blockIn}
-      className={`absolute inset-x-1 overflow-hidden rounded-xl py-2 pl-4 pr-3 ring-1 transition-[opacity,box-shadow,filter] duration-300 sm:inset-x-1.5 ${
+      className={`absolute overflow-hidden rounded-xl py-2 pl-4 pr-2.5 ring-1 transition-[opacity,box-shadow,filter] duration-300 ${
         lit
           ? "z-10 bg-gold-pale shadow-glow ring-gold"
           : single
             ? single.tone.soft
             : "bg-slate-50 text-navy ring-navy/10"
       } ${dimmed ? "opacity-30 grayscale" : ""}`}
-      style={{ top: top + 2, height: blockHeight }}
+      // Overlapping classes share the column width, one lane each.
+      style={{
+        top: top + 2,
+        height: blockHeight,
+        left: `calc(${(lane / lanes) * 100}% + 6px)`,
+        width: `calc(${100 / lanes}% - 10px)`,
+      }}
     >
       <span
         aria-hidden
         className={`absolute inset-y-2 left-1.5 w-1 rounded-full ${lit ? "bg-gold" : single?.tone.bar ?? "bg-navy/30"}`}
       />
-      <p className="text-[0.7rem] font-semibold opacity-60 tabular">{slot.time}</p>
+      <p className="text-[0.72rem] font-semibold opacity-70 tabular">{formatRange(start, end)}</p>
       <p className="mt-0.5 flex flex-wrap gap-x-2.5 gap-y-0.5 font-display text-[0.9rem] font-bold leading-tight text-navy">
         {slot.subjects.map((s, i) => (
           <span key={s} className="inline-flex items-center gap-1.5">
