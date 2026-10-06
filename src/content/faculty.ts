@@ -88,7 +88,7 @@ export const faculty: FacultyMember[] = [
     subjects: ["Business"],
     levels: ["O Level", "AS Level", "A2 Level"],
     credential: "Business from O Level through A2",
-    photo: "/images/faculty/unais-iqbal.jpeg",
+    photo: "/images/faculty/unais-iqbal-portrait.jpeg",
   },
   {
     slug: "shehnil-kashif",
@@ -96,6 +96,6 @@ export const faculty: FacultyMember[] = [
     subjects: ["Economics"],
     levels: ["O Level", "AS Level", "A2 Level"],
     credential: "Economics from O Level through A2",
-    photo: "/images/faculty/shehnil-kashif.jpeg",
+    photo: "/images/faculty/shehnil-kashif-portrait.jpeg",
   },
 ];
