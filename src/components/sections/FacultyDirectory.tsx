@@ -1,10 +1,12 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import { m } from "framer-motion";
 import { faculty } from "@/content/faculty";
 import { SUBJECT_GROUPS, groupOf, type SubjectGroupId } from "@/content/subjects";
 import { FacultyCard } from "@/components/faculty/FacultyCard";
+import { openEnrol } from "@/lib/prefill";
 import { Accent, SectionHeading } from "@/components/ui/SectionHeading";
 import {
   SPRING_TAP,
@@ -40,20 +42,42 @@ const SPAN_LG: Record<number, string> = {
   4: "lg:col-span-4",
 };
 
+const MOBILE_FACES = 6;
+
 function MatchTile() {
+  const faces = faculty.filter((f) => f.photo);
   return (
     <a
       href="#enroll"
-      className="group relative flex h-full min-h-[22rem] flex-col justify-between overflow-hidden rounded-[1.75rem] border border-dashed border-gold/40 bg-gradient-to-br from-gold/[0.12] to-transparent p-7 transition-colors hover:border-gold sm:min-h-0"
+      onClick={(e) => {
+        e.preventDefault();
+        openEnrol("trial");
+      }}
+      className="group relative flex h-full min-h-[22rem] flex-col justify-between gap-8 overflow-hidden rounded-[1.75rem] border border-gold/25 bg-gradient-to-br from-gold/[0.14] via-white/[0.03] to-transparent p-7 transition-colors hover:border-gold/60 sm:min-h-0"
     >
-      <span aria-hidden className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold/20 blur-3xl transition-transform duration-700 group-hover:scale-125" />
-      <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gold text-navy-dark">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6" aria-hidden>
-          <circle cx="10" cy="8" r="4" />
-          <path d="M2.5 21c0-4 3.4-7 7.5-7 1.6 0 3 .4 4.2 1.1M19 14v6M16 17h6" strokeLinecap="round" />
-        </svg>
+      <span aria-hidden className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-gold/20 blur-3xl transition-transform duration-700 group-hover:scale-125" />
+
+      {/* The whole team in one overlapping row; phones show six plus a count */}
+      <span aria-hidden className="relative flex -space-x-3">
+        {faces.map((f, i) => (
+          <span
+            key={f.slug}
+            className={`relative h-12 w-12 overflow-hidden rounded-full ring-[3px] ring-navy-ink transition-transform duration-500 group-hover:-translate-y-1 sm:h-14 sm:w-14 ${
+              i >= MOBILE_FACES ? "hidden sm:block" : ""
+            }`}
+            style={{ transitionDelay: `${i * 30}ms` }}
+          >
+            <Image src={f.photo!} alt="" fill sizes="56px" className="object-cover object-top" />
+          </span>
+        ))}
+        {faces.length > MOBILE_FACES && (
+          <span className="relative flex h-12 w-12 items-center justify-center rounded-full bg-gold font-display text-sm font-extrabold text-navy-dark ring-[3px] ring-navy-ink sm:hidden">
+            +{faces.length - MOBILE_FACES}
+          </span>
+        )}
       </span>
-      <span className="relative mt-10 block">
+
+      <span className="relative block">
         <span className="block font-display text-2xl font-bold leading-tight tracking-tight text-white">
           Not sure who to start with?
         </span>
@@ -61,7 +85,7 @@ function MatchTile() {
           Tell us your subjects and we&apos;ll match you with the right
           specialist for a free trial class.
         </span>
-        <span className="mt-6 inline-flex items-center gap-2 font-display text-sm font-bold text-gold">
+        <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 font-display text-sm font-bold text-navy-dark">
           Get matched
           <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
         </span>
@@ -90,7 +114,7 @@ export function FacultyDirectory() {
   return (
     <section
       id="faculty"
-      className="relative isolate scroll-mt-20 overflow-hidden bg-navy-ink py-20 text-white sm:py-28"
+      className="relative isolate scroll-mt-20 overflow-hidden bg-navy-ink pb-20 pt-14 text-white sm:pb-28 sm:pt-20"
     >
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-40 top-20 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(closest-side,rgba(42,66,144,0.7),transparent)]" />

@@ -4,7 +4,6 @@ import Image from "next/image";
 import { m } from "framer-motion";
 import { faculty } from "@/content/faculty";
 import { testimonials } from "@/content/results";
-import { timetable } from "@/content/timetable";
 import { Accent, SectionHeading } from "@/components/ui/SectionHeading";
 import { trackSpotlight } from "@/components/motion/spotlight";
 import {
@@ -147,28 +146,7 @@ export function WhyUs() {
             </div>
           </Tile>
 
-          {/* 3 — Batches */}
-          <Tile className="border border-navy/[0.07] bg-white shadow-card lg:col-span-2">
-            <IconBadge>
-              <path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" strokeLinecap="round" />
-              <circle cx="12" cy="12" r="4" />
-            </IconBadge>
-            <div className="mt-5">
-              <TileTitle>Mornings or weekends</TileTitle>
-            </div>
-            <ul className="mt-5 space-y-2.5">
-              <li className="flex items-center justify-between gap-3 rounded-2xl bg-cream px-4 py-3">
-                <span className="font-display text-sm font-bold text-navy">Mon – Thu</span>
-                <span className="text-right text-xs text-slate-500">{timetable.morning.label} · Gr 9–11</span>
-              </li>
-              <li className="flex items-center justify-between gap-3 rounded-2xl bg-cream px-4 py-3">
-                <span className="font-display text-sm font-bold text-navy">Sat – Sun</span>
-                <span className="text-right text-xs text-slate-500">{timetable.evening.label} · O/AS/A2</span>
-              </li>
-            </ul>
-          </Tile>
-
-          {/* 4 — Doubts cleared (student's own words) */}
+          {/* 3 — Doubts cleared (student's own words) */}
           <Tile className="relative flex flex-col border border-navy/[0.07] bg-white shadow-card lg:col-span-2">
             <span aria-hidden className="font-serif text-7xl leading-[0.6] text-gold">
               &ldquo;
@@ -184,7 +162,7 @@ export function WhyUs() {
             )}
           </Tile>
 
-          {/* 5 — Friday enrichment (real trip photo) */}
+          {/* 4 — Friday enrichment (real trip photo) */}
           <Tile className="relative isolate flex min-h-[18rem] flex-col justify-end bg-navy text-white sm:col-span-2 lg:col-span-2">
             <Image
               src="/images/campus/enrichment-trip.jpeg"
@@ -195,7 +173,7 @@ export function WhyUs() {
             />
             <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-ink via-navy-ink/60 to-transparent" />
             <span className="mb-auto inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold uppercase tracking-wider backdrop-blur">
-              Every Friday
+              Every Friday · Holistic growth
             </span>
             <TileTitle onDark>Students Enrichment Program</TileTitle>
             <p className="mt-2 text-sm text-slate-200">
@@ -203,9 +181,9 @@ export function WhyUs() {
             </p>
           </Tile>
 
-          {/* 6 — Parents in the loop */}
-          <Tile className="border border-navy/[0.07] bg-white shadow-card sm:col-span-2 lg:col-span-3">
-            <div className="grid gap-6 sm:grid-cols-[1fr_1.1fr] sm:items-center">
+          {/* 5 — Parents in the loop */}
+          <Tile className="border border-navy/[0.07] bg-white shadow-card sm:col-span-2 lg:col-span-2">
+            <div className="grid gap-6 sm:grid-cols-[1fr_1.1fr] sm:items-center lg:grid-cols-1">
               <div>
                 <IconBadge>
                   <path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12Z" strokeLinejoin="round" />
@@ -230,34 +208,6 @@ export function WhyUs() {
             </div>
           </Tile>
 
-          {/* 7 — Holistic growth */}
-          <Tile className="relative bg-navy-light text-white [--spot:rgba(244,180,26,0.2)] sm:col-span-2 lg:col-span-3">
-            <div aria-hidden className="absolute -bottom-24 -left-10 h-64 w-64 rounded-full bg-gold/15 blur-3xl" />
-            <p className="eyebrow text-gold">Holistic development</p>
-            <div className="mt-3">
-              <TileTitle onDark>Grow beyond the grade sheet</TileTitle>
-            </div>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-300">
-              Academic excellence and personal growth, side by side — the
-              Tribe code lives in every classroom.
-            </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {["Ask questions", "Dream big", "Work hard", "Raise your hand", "Be kind", "Don't give up"].map(
-                (word, i) => (
-                  <li
-                    key={word}
-                    className={`rounded-full px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider ${
-                      i % 3 === 0
-                        ? "bg-gold text-navy-dark"
-                        : "border border-white/20 text-white/85"
-                    }`}
-                  >
-                    {word}
-                  </li>
-                ),
-              )}
-            </ul>
-          </Tile>
         </m.div>
       </div>
     </section>

@@ -11,8 +11,9 @@ import { Faq } from "@/components/sections/Faq";
 import { Footer } from "@/components/sections/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 
-// Funnel order: attention → values → trust → logistics → crash-course offer →
-// proof → capture → reassurance.
+// Story order: who teaches (the deciding factor for parents) → how we teach →
+// proof → logistics → the crash-course offer → one sign-up area for both
+// offers → reassurance.
 export default function HomePage() {
   return (
     <>
@@ -20,11 +21,11 @@ export default function HomePage() {
       <main>
         <Hero />
         <TribeMarquee />
-        <WhyUs />
         <FacultyDirectory />
+        <WhyUs />
+        <SocialProof />
         <TimetableSection />
         <CrashCourses />
-        <SocialProof />
         <LeadCapture />
         <Faq />
       </main>

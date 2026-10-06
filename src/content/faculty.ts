@@ -72,4 +72,30 @@ export const faculty: FacultyMember[] = [
     credential: "O Level English language specialist",
     photo: "/images/faculty/ahmed-sewani.jpeg",
   },
+
+  // Commerce
+  {
+    slug: "hammad-muneer",
+    name: "Sir Hammad Muneer",
+    subjects: ["Accounts"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Accounting across all Cambridge levels",
+    photo: "/images/faculty/hammad-muneer.jpeg",
+  },
+  {
+    slug: "unais-iqbal",
+    name: "Sir Unais Iqbal",
+    subjects: ["Business"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Business from O Level through A2",
+    photo: "/images/faculty/unais-iqbal.jpeg",
+  },
+  {
+    slug: "shehnil-kashif",
+    name: "Sir Shehnil Kashif",
+    subjects: ["Economics"],
+    levels: ["O Level", "AS Level", "A2 Level"],
+    credential: "Economics from O Level through A2",
+    photo: "/images/faculty/shehnil-kashif.jpeg",
+  },
 ];

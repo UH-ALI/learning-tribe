@@ -20,10 +20,11 @@ import {
 const FEATURED = [
   "zaryab-hussain",
   "noor-azeem",
+  "shehnil-kashif",
   "fahad-ali",
+  "unais-iqbal",
   "ibrahim-ali",
-  "waleed-fulara",
-  "ahmed-sewani",
+  "hammad-muneer",
 ]
   .map((slug) => faculty.find((f) => f.slug === slug))
   .filter((f): f is (typeof faculty)[number] & { photo: string } => !!f?.photo);

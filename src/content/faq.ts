@@ -29,7 +29,7 @@ export const faq: FaqItem[] = [
   {
     question: "Do you offer crash courses?",
     answer:
-      "Yes — short, exam-focused revision courses for O Level, AS & A2. Register in the Crash Courses section and our coordinator will WhatsApp you the batch dates, timings and fees.",
+      "Yes — short, exam-focused revision courses for O Level, AS & A2. Tap “Register now” on the crash-course pass (or choose “Crash course” in the sign-up form) and our coordinator will WhatsApp you the batch dates, timings and fees.",
   },
   {
     question: "Are the class timings fixed?",

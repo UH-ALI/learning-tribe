@@ -25,3 +25,19 @@ export const crashCourse = {
   ],
   note: "Batch dates, timings and fees are shared on WhatsApp once you register.",
 };
+
+/** "How it works" steps shown beside the form in crash-course mode. */
+export const crashCourseSteps = [
+  {
+    title: "Register your interest",
+    body: "Level, exam session and subjects — that's all we need.",
+  },
+  {
+    title: "Get the plan on WhatsApp",
+    body: "Batch dates, timings and fees for your subjects.",
+  },
+  {
+    title: "Revise with specialists",
+    body: "Recap, past papers and doubt-clearing before the exam.",
+  },
+];

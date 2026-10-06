@@ -133,3 +133,12 @@ both forms and the script keeps them apart by tab.
 The "Which exam are you preparing for?" options live in
 `src/lib/crashCourseSchema.ts` (`EXAM_SESSIONS`). Edit that list as sessions
 roll over — the form and the server-side validation both update together.
+
+### Linking straight to the crash-course form
+Both forms live in the same sign-up area at the bottom of the page, with a
+**Free trial class | Crash course** switch. To send people (e.g. from an
+Instagram ad or bio link) straight to the crash-course form, use:
+```
+https://<your-site>/#crash-course-form
+```
+The page opens with the sign-up area already switched to **Crash course**.

@@ -17,11 +17,11 @@ import {
 } from "@/components/motion/vocabulary";
 
 const NAV_LINKS: { href: string; label: string; isNew?: boolean }[] = [
-  { href: "#why", label: "Why us" },
   { href: "#faculty", label: "Faculty" },
+  { href: "#why", label: "Why us" },
+  { href: "#results", label: "Results" },
   { href: "#timetable", label: "Timetable" },
   { href: "#crash-courses", label: "Crash courses", isNew: true },
-  { href: "#results", label: "Results" },
   { href: "#faq", label: "FAQ" },
 ];
 
