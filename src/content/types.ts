@@ -73,4 +73,13 @@ export interface SiteContent {
   mapsUrl: string;
   /** Urgency strip under the hero CTAs. */
   sessionNote: string;
+  /** Wayfinding inside the building, e.g. "Second floor, left side". */
+  campusDirections: string;
+  /** The "tribe code" from the classroom poster — runs as the brand marquee. */
+  tribeCode: { lead: string; word: string }[];
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
 }

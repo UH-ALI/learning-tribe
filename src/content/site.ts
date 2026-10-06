@@ -17,6 +17,19 @@ export const site: SiteContent = {
   mapsUrl: "https://maps.app.goo.gl/ScKQsFgLxRZ3Wmpd6",
   sessionNote:
     "Session 2026–27 now enrolling — Morning & Evening batches, limited seats.",
+  campusDirections: "Second floor, left side",
+  tribeCode: [
+    { lead: "Be ready to", word: "Learn" },
+    { lead: "Tell the", word: "Truth" },
+    { lead: "Raise your", word: "Hand" },
+    { lead: "Do your", word: "Best" },
+    { lead: "Be kind to", word: "Everyone" },
+    { lead: "Work", word: "Hard" },
+    { lead: "Ask", word: "Questions" },
+    { lead: "Dream", word: "Big" },
+    { lead: "Try new", word: "Things" },
+    { lead: "Don't", word: "Give Up" },
+  ],
 };
 
 /** WhatsApp deep link with the pre-filled inquiry message. */

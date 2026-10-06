@@ -1,20 +1,32 @@
-import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import {
+  Bricolage_Grotesque,
+  Instrument_Serif,
+  Plus_Jakarta_Sans,
+} from "next/font/google";
 import { site } from "@/content/site";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 // Self-hosted via next/font — no external font requests, no layout shift.
-const inter = Inter({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
 });
 
-const poppins = Poppins({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
   variable: "--font-display",
+  display: "swap",
+});
+
+// Editorial italic accents — the web echo of the posters' script taglines.
+const instrument = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
 });
 
@@ -30,6 +42,10 @@ export const metadata: Metadata = {
     locale: "en_PK",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0A1435",
 };
 
 const localBusinessJsonLd = {
@@ -51,7 +67,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      className={`${jakarta.variable} ${bricolage.variable} ${instrument.variable}`}
+    >
       <body>
         <MotionProvider>{children}</MotionProvider>
         <script
