@@ -27,6 +27,11 @@ export const faq: FaqItem[] = [
       "Maths, Physics, Chemistry, Biology, Computer Science, Business, Economics, Accounts, English, Urdu, Islamiyat and Pakistan Studies — each taught by a dedicated subject specialist.",
   },
   {
+    question: "Do you offer crash courses?",
+    answer:
+      "Yes — short, exam-focused revision courses for O Level, AS & A2. Tap “Register now” on the crash-course pass (or choose “Crash course” in the sign-up form) and our coordinator will WhatsApp you the batch dates, timings and fees.",
+  },
+  {
     question: "Are the class timings fixed?",
     answer:
       "Timings can vary from batch to batch and session to session. The timetable on this page is the current plan — our coordinator will confirm the exact slot for your subjects on WhatsApp.",

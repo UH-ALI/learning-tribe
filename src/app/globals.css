@@ -187,6 +187,41 @@
   }
 }
 
+@layer components {
+  /* Exam-pass ticket: two halves with real half-circle notches cut where
+     the perforation meets the edge (stacked on phones, side by side from
+     lg). Masks cut actual holes, so the background shows through and a
+     drop-shadow on the parent follows the notched outline. */
+  .ticket-main,
+  .ticket-stub {
+    --notch: 1.4rem;
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  .ticket-main {
+    mask-image:
+      radial-gradient(circle at 0 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+      radial-gradient(circle at 100% 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+  }
+  .ticket-stub {
+    mask-image:
+      radial-gradient(circle at 0 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+      radial-gradient(circle at 100% 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+  }
+  @media (min-width: 1024px) {
+    .ticket-main {
+      mask-image:
+        radial-gradient(circle at 100% 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+        radial-gradient(circle at 100% 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+    }
+    .ticket-stub {
+      mask-image:
+        radial-gradient(circle at 0 0, transparent var(--notch), #000 calc(var(--notch) + 0.5px)),
+        radial-gradient(circle at 0 100%, transparent var(--notch), #000 calc(var(--notch) + 0.5px));
+    }
+  }
+}
+
 @layer utilities {
   /* Horizontal snap-scroll rail for mobile card carousels */
   .scrollbar-none {

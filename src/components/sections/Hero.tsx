@@ -20,10 +20,11 @@ import {
 const FEATURED = [
   "zaryab-hussain",
   "noor-azeem",
+  "shehnil-kashif",
   "fahad-ali",
-  "mustafa-moten",
+  "unais-iqbal",
   "ibrahim-ali",
-  "ali-moten",
+  "hammad-muneer",
 ]
   .map((slug) => faculty.find((f) => f.slug === slug))
   .filter((f): f is (typeof faculty)[number] & { photo: string } => !!f?.photo);
@@ -208,8 +209,23 @@ export function Hero() {
             </m.a>
           </m.div>
 
+          {/* New offer — jumps to the crash-course form */}
+          <m.a
+            variants={fadeRise}
+            href="#crash-courses"
+            className="group mt-6 inline-flex items-center gap-2.5 rounded-full border border-gold/30 bg-gold/10 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-gold-light transition-colors hover:border-gold/60 hover:bg-gold/15"
+          >
+            <span className="rounded-full bg-gold px-2 py-0.5 font-display text-[0.65rem] font-extrabold uppercase tracking-wide text-navy-dark">
+              New
+            </span>
+            Exam crash courses for O, AS &amp; A2
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
+              →
+            </span>
+          </m.a>
+
           {/* Faculty proof — real faces beat any claim */}
-          <m.div variants={fadeRise} className="mt-10 flex items-center gap-4">
+          <m.div variants={fadeRise} className="mt-9 flex items-center gap-4">
             <div className="flex -space-x-3">
               {withPhotos.slice(0, 5).map((f) => (
                 <span

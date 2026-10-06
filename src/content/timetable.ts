@@ -1,9 +1,11 @@
 import type { TimetableContent } from "./types";
 
 /**
- * Schedules transcribed from the Session 2026–27 Morning/Evening
- * Program posters. Timings shift between sessions — the section UI
- * always shows the coordinator disclaimer alongside this data.
+ * Morning schedule transcribed from the Session 2026–27 Morning Program
+ * poster; the weekend (Evening Batch) schedule is the October 2026
+ * Saturday/Sunday timetable for O, AS & A2. Timings shift between
+ * sessions — the section UI always shows the coordinator disclaimer
+ * alongside this data.
  */
 export const timetable: TimetableContent = {
   morning: {
@@ -61,22 +63,23 @@ export const timetable: TimetableContent = {
       {
         track: "O Levels",
         slots: [
-          { time: "11:00 – 12:00", subjects: ["Chemistry"] },
-          { time: "12:00 – 1:00", subjects: ["Physics", "Pakistan Studies"] },
-          { time: "1:00 – 2:00", subjects: ["Maths", "Islamiat"] },
+          { time: "10:00 – 11:00", subjects: ["Chemistry"] },
+          { time: "12:00 – 1:00", subjects: ["Physics", "Urdu"] },
+          { time: "1:00 – 2:00", subjects: ["Maths"] },
           {
             time: "2:00 – 3:00",
-            subjects: ["Computer", "Biology", "Accounts"],
+            subjects: ["Computer", "Biology", "Business", "Pakistan Studies"],
           },
-          { time: "3:00 – 4:00", subjects: ["English", "Urdu"] },
-          { time: "4:00 – 5:00", subjects: ["Business"] },
+          { time: "3:00 – 4:00", subjects: ["English"] },
+          { time: "4:00 – 5:00", subjects: ["Accounts"] },
           { time: "5:00 – 6:00", subjects: ["Economics"] },
         ],
       },
       {
         track: "AS Levels",
         slots: [
-          { time: "12:00 – 1:00", subjects: ["Biology", "Maths"] },
+          { time: "11:00 – 12:00", subjects: ["Biology"] },
+          { time: "12:00 – 1:00", subjects: ["Maths"] },
           { time: "1:00 – 2:00", subjects: ["Computer", "Chemistry"] },
           { time: "2:00 – 3:00", subjects: ["Physics"] },
           { time: "3:00 – 4:00", subjects: ["Business"] },
@@ -87,11 +90,9 @@ export const timetable: TimetableContent = {
         track: "A2 Levels",
         slots: [
           { time: "9:00 – 10:00", subjects: ["Biology"] },
-          { time: "10:00 – 11:00", subjects: ["Chemistry"] },
-          { time: "11:00 – 12:00", subjects: ["Maths"] },
-          { time: "12:00 – 1:00", subjects: ["Computer"] },
-          { time: "1:00 – 2:00", subjects: ["Physics"] },
-          { time: "2:00 – 3:00", subjects: ["Business"] },
+          { time: "11:00 – 12:00", subjects: ["Maths", "Urdu"] },
+          { time: "12:00 – 1:00", subjects: ["Chemistry", "Computer"] },
+          { time: "1:00 – 2:00", subjects: ["Physics", "Business"] },
           { time: "3:00 – 4:00", subjects: ["Accounts"] },
         ],
       },

@@ -1,3 +1,5 @@
+import { faculty } from "./faculty";
+
 /**
  * Results & reviews content.
  * NOTE: verify the two results-flavoured stats (A*–A rate, students coached)
@@ -19,7 +21,7 @@ export interface Testimonial {
 export const resultStats: ResultStat[] = [
   { value: "65%+", label: "A*–B grades in recent CAIE results" },
   { value: "150+", label: "students coached across Karachi" },
-  { value: "14", label: "specialist subject teachers" },
+  { value: String(faculty.length), label: "specialist subject teachers" },
   { value: "12+", label: "Cambridge subjects under one roof" },
 ];
 

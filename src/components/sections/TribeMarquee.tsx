@@ -29,14 +29,15 @@ function Row({ hidden = false }: { hidden?: boolean }) {
 
 /**
  * The "tribe code" from the classroom poster, running as a tilted gold
- * ribbon between the hero and the page proper. Pure CSS marquee — the
- * list is doubled and slid by -50% for a seamless loop.
+ * ribbon across the dark stretch between the hero and the faculty.
+ * Pure CSS marquee — the list is doubled and slid by -50% for a
+ * seamless loop.
  */
 export function TribeMarquee() {
   return (
     <section
       aria-label="The Tribe code"
-      className="relative z-10 overflow-hidden bg-[linear-gradient(to_bottom,#040919_50%,#F8F7F3_50%)] py-8"
+      className="relative z-10 overflow-hidden bg-navy-ink py-8"
     >
       <div className="-mx-4 -rotate-[1.6deg] bg-gold py-4 text-navy-dark shadow-[0_20px_50px_-20px_rgba(244,180,26,0.6)]">
         <div className="mask-fade-x flex">
